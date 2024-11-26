@@ -6,12 +6,19 @@
 //
 
 import SwiftUI
+import AppKit
 
 @main
 struct MonevationApp: App {
+    
+    @StateObject private var monevactionViewModel = MonevationViewModel()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .onAppear {
+                    monevactionViewModel.setupToolbar()
+                }
         }
     }
 }
