@@ -7,19 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1D5B10362CF9308100B673A1 /* MonevationApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5B10352CF9308100B673A1 /* MonevationApp.swift */; };
-		1D5B10382CF9308100B673A1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5B10372CF9308100B673A1 /* ContentView.swift */; };
 		1D5B103A2CF9308300B673A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D5B10392CF9308300B673A1 /* Assets.xcassets */; };
 		1D5B103D2CF9308300B673A1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D5B103C2CF9308300B673A1 /* Preview Assets.xcassets */; };
+		1D5B10452CF930B000B673A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5B10442CF930B000B673A1 /* AppDelegate.swift */; };
+		1D5B10472CF930CD00B673A1 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5B10462CF930CD00B673A1 /* MenuViewController.swift */; };
+		1D5B10492CF930EB00B673A1 /* SettingsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5B10482CF930EB00B673A1 /* SettingsWindowController.swift */; };
+		1D5B104B2CF932D800B673A1 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1D5B104A2CF932D800B673A1 /* Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1D5B10322CF9308100B673A1 /* Monevation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Monevation.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		1D5B10352CF9308100B673A1 /* MonevationApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonevationApp.swift; sourceTree = "<group>"; };
-		1D5B10372CF9308100B673A1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1D5B10392CF9308300B673A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1D5B103C2CF9308300B673A1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1D5B103E2CF9308300B673A1 /* Monevation.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Monevation.entitlements; sourceTree = "<group>"; };
+		1D5B10442CF930B000B673A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		1D5B10462CF930CD00B673A1 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		1D5B10482CF930EB00B673A1 /* SettingsWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWindowController.swift; sourceTree = "<group>"; };
+		1D5B104A2CF932D800B673A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,11 +56,13 @@
 		1D5B10342CF9308100B673A1 /* Monevation */ = {
 			isa = PBXGroup;
 			children = (
-				1D5B10352CF9308100B673A1 /* MonevationApp.swift */,
-				1D5B10372CF9308100B673A1 /* ContentView.swift */,
 				1D5B10392CF9308300B673A1 /* Assets.xcassets */,
 				1D5B103E2CF9308300B673A1 /* Monevation.entitlements */,
 				1D5B103B2CF9308300B673A1 /* Preview Content */,
+				1D5B10442CF930B000B673A1 /* AppDelegate.swift */,
+				1D5B104A2CF932D800B673A1 /* Info.plist */,
+				1D5B10462CF930CD00B673A1 /* MenuViewController.swift */,
+				1D5B10482CF930EB00B673A1 /* SettingsWindowController.swift */,
 			);
 			path = Monevation;
 			sourceTree = "<group>";
@@ -129,6 +135,7 @@
 			files = (
 				1D5B103D2CF9308300B673A1 /* Preview Assets.xcassets in Resources */,
 				1D5B103A2CF9308300B673A1 /* Assets.xcassets in Resources */,
+				1D5B104B2CF932D800B673A1 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,8 +146,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D5B10382CF9308100B673A1 /* ContentView.swift in Sources */,
-				1D5B10362CF9308100B673A1 /* MonevationApp.swift in Sources */,
+				1D5B10452CF930B000B673A1 /* AppDelegate.swift in Sources */,
+				1D5B10492CF930EB00B673A1 /* SettingsWindowController.swift in Sources */,
+				1D5B10472CF930CD00B673A1 /* MenuViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
