@@ -14,7 +14,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var popover: NSPopover!
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Створюємо статус бар елемент
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         if let button = statusItem.button {
             button.image = NSImage(systemSymbolName: "dollarsign.circle", accessibilityDescription: "Monevation")

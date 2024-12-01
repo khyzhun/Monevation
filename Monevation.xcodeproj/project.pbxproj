@@ -12,7 +12,7 @@
 		1D5B10452CF930B000B673A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5B10442CF930B000B673A1 /* AppDelegate.swift */; };
 		1D5B10472CF930CD00B673A1 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5B10462CF930CD00B673A1 /* MenuViewController.swift */; };
 		1D5B10492CF930EB00B673A1 /* SettingsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5B10482CF930EB00B673A1 /* SettingsWindowController.swift */; };
-		1D5B104B2CF932D800B673A1 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1D5B104A2CF932D800B673A1 /* Info.plist */; };
+		1D9961E52CFD100E00095E11 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1D5B104A2CF932D800B673A1 /* Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -135,7 +135,7 @@
 			files = (
 				1D5B103D2CF9308300B673A1 /* Preview Assets.xcassets in Resources */,
 				1D5B103A2CF9308300B673A1 /* Assets.xcassets in Resources */,
-				1D5B104B2CF932D800B673A1 /* Info.plist in Resources */,
+				1D9961E52CFD100E00095E11 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
