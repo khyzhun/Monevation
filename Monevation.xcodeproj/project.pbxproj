@@ -9,10 +9,8 @@
 /* Begin PBXBuildFile section */
 		1D5B103A2CF9308300B673A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D5B10392CF9308300B673A1 /* Assets.xcassets */; };
 		1D5B103D2CF9308300B673A1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D5B103C2CF9308300B673A1 /* Preview Assets.xcassets */; };
-		1D5B10452CF930B000B673A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5B10442CF930B000B673A1 /* AppDelegate.swift */; };
-		1D5B10472CF930CD00B673A1 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5B10462CF930CD00B673A1 /* MenuViewController.swift */; };
-		1D5B10492CF930EB00B673A1 /* SettingsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5B10482CF930EB00B673A1 /* SettingsWindowController.swift */; };
-		1D9961E52CFD100E00095E11 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1D5B104A2CF932D800B673A1 /* Info.plist */; };
+		1D5B10452CF930B000B673A1 /* MonevationAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5B10442CF930B000B673A1 /* MonevationAppApp.swift */; };
+		1D9962212CFD1AC000095E11 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9962202CFD1AC000095E11 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,10 +18,8 @@
 		1D5B10392CF9308300B673A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1D5B103C2CF9308300B673A1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1D5B103E2CF9308300B673A1 /* Monevation.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Monevation.entitlements; sourceTree = "<group>"; };
-		1D5B10442CF930B000B673A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1D5B10462CF930CD00B673A1 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
-		1D5B10482CF930EB00B673A1 /* SettingsWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWindowController.swift; sourceTree = "<group>"; };
-		1D5B104A2CF932D800B673A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1D5B10442CF930B000B673A1 /* MonevationAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonevationAppApp.swift; sourceTree = "<group>"; };
+		1D9962202CFD1AC000095E11 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,10 +55,8 @@
 				1D5B10392CF9308300B673A1 /* Assets.xcassets */,
 				1D5B103E2CF9308300B673A1 /* Monevation.entitlements */,
 				1D5B103B2CF9308300B673A1 /* Preview Content */,
-				1D5B10442CF930B000B673A1 /* AppDelegate.swift */,
-				1D5B104A2CF932D800B673A1 /* Info.plist */,
-				1D5B10462CF930CD00B673A1 /* MenuViewController.swift */,
-				1D5B10482CF930EB00B673A1 /* SettingsWindowController.swift */,
+				1D5B10442CF930B000B673A1 /* MonevationAppApp.swift */,
+				1D9962202CFD1AC000095E11 /* ContentView.swift */,
 			);
 			path = Monevation;
 			sourceTree = "<group>";
@@ -135,7 +129,6 @@
 			files = (
 				1D5B103D2CF9308300B673A1 /* Preview Assets.xcassets in Resources */,
 				1D5B103A2CF9308300B673A1 /* Assets.xcassets in Resources */,
-				1D9961E52CFD100E00095E11 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,9 +139,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D5B10452CF930B000B673A1 /* AppDelegate.swift in Sources */,
-				1D5B10492CF930EB00B673A1 /* SettingsWindowController.swift in Sources */,
-				1D5B10472CF930CD00B673A1 /* MenuViewController.swift in Sources */,
+				1D9962212CFD1AC000095E11 /* ContentView.swift in Sources */,
+				1D5B10452CF930B000B673A1 /* MonevationAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,6 +277,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Monevation/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -310,6 +303,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Monevation/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
