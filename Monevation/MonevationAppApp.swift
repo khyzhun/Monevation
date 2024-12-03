@@ -10,15 +10,13 @@ import SwiftUI
 @main
 struct MonevationAppApp: App {
     
-    @State var currentNumber: String = "1"
-    
     var body: some Scene {
-        MenuBarExtra(currentNumber) {
-            Button("One") {
-                currentNumber = "1"
+        MenuBarExtra {
+            Button("Start") {
+                // TODO: start the timer
             }
-            Button("Two") {
-                currentNumber = "2"
+            Button("Stop") {
+                // TODO: stop the timer
             }
             Button("Settings") {
                 // TODO: open a new window.
@@ -27,6 +25,8 @@ struct MonevationAppApp: App {
             Button("Quit") {
                 NSApplication.shared.terminate(nil)
             }.keyboardShortcut("q")
+        } label: {
+            Image(systemName: "dollarsign.circle")
         }
     }
 }
