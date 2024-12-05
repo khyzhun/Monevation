@@ -13,7 +13,7 @@ struct MonevationAppApp: App {
     @State private var timer: Timer?
     @State private var startTime: Date?
     @State private var totalEarned: Double = 0.0
-    @State private var hourlyRate: Double = 45.0 // TODO: calculate income based on this value insteaf of mock.
+    @State private var hourlyRate: Double = 25.0 // just for example
     
     enum UpdateOption: String, CaseIterable {
         case every_minute = "Update every minute"
@@ -29,10 +29,11 @@ struct MonevationAppApp: App {
             Divider()
             Button("Start") {
                 startTime = Date()
-                // TODO: need to change Interval by selecting UpdateOptions.
-                timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
-                    updateEarnings()
-                }
+                let interval = intervalForUpdateOption(selectedUpdateOption)
+                    timer?.invalidate()
+                    timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { _ in
+                        updateEarnings()
+                    }
             }
             Button("Stop") {
                 timer?.invalidate()
@@ -59,18 +60,23 @@ struct MonevationAppApp: App {
         }
     }
     
+    func intervalForUpdateOption(_ option: UpdateOption) -> TimeInterval {
+        switch option {
+        case .every_minute:
+            return 60
+        case .every_five_minutes:
+            return 5 * 60
+        case .every_fifteen_minutes:
+            return 15 * 60
+        }
+    }
+    
     func updateEarnings() {
         if let startTime = startTime {
-            let elapsedTime = Date().timeIntervalSince(startTime)
-            switch selectedUpdateOption {
-            case .every_minute:
-                totalEarned = Double(elapsedTime / 60)
-             case .every_five_minutes:
-                totalEarned = Double(elapsedTime / (5 * 60))
-             case .every_fifteen_minutes:
-                totalEarned = Double(elapsedTime / (15 * 60))
-             }
-        }
+          let elapsedTime = Date().timeIntervalSince(startTime)
+          // Calculate total earned based on hourly rate and elapsed time (in hours)
+          totalEarned = (elapsedTime / 3600.0) * hourlyRate
+      }
     }
     
     func openSettings() {
