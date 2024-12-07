@@ -15,17 +15,21 @@ struct MonevationAppApp: App {
     @State private var timer: Timer?
     @State private var startTime: Date?
     @State private var totalEarned: Double = 0.0
-    @State private var hourlyRate: Double = 25.0
+    @State private var hourlyRate: Double = 50.0
+    @State private var isPaused: Bool = false
+    @State private var elapsedPausedTime: TimeInterval = 0.0
     
     enum UpdateOption: String, CaseIterable {
+        case every_second = "Update every second" // to simplify testing.
         case every_minute = "Update every minute"
         case every_five_minutes = "Update every 5 minutes"
         case every_fifteen_minutes = "Update every 15 minutes"
     }
     
-    @State private var selectedUpdateOption: UpdateOption = .every_minute
+    @State private var selectedUpdateOption: UpdateOption = .every_second
     
     // MARK: - Constants
+    private let oneSecond: TimeInterval = 1
     private let oneMinute: TimeInterval = 60
     private let fiveMinutes: TimeInterval = 5 * 60
     private let fifteenMinutes: TimeInterval = 15 * 60
@@ -41,12 +45,18 @@ struct MonevationAppApp: App {
             // Start button
             Button("Start") {
                 startTracking()
-            }
+            }.disabled(isTimerRunning)
+            
+            Button(isPaused ? "Resume" : "Pause") {
+                pauseUnpauseTracking()
+            }.disabled(!isTimerRunning)
             
             // Stop button
             Button("Stop") {
                 stopTracking()
-            }
+            }.disabled(!isTimerRunning)
+            
+            Divider()
             
             // Settings menu
             Menu("Settings") {
@@ -76,6 +86,10 @@ struct MonevationAppApp: App {
         String(format: "$%.2f", totalEarned)
     }
     
+    private var isTimerRunning: Bool {
+        return timer != nil
+    }
+    
     private var settingsMenuContent: some View {
         ForEach(UpdateOption.allCases, id: \.self) { option in
             Button(action: {
@@ -90,19 +104,42 @@ struct MonevationAppApp: App {
     
     private func startTracking() {
         startTime = Date()
+        isPaused = false
+        let interval = intervalForUpdateOption(selectedUpdateOption)
         timer?.invalidate()
-        timer = Timer.scheduledTimer(withTimeInterval: intervalForUpdateOption(selectedUpdateOption), repeats: true) { _ in
+        timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { _ in
             updateEarnings()
         }
+    }
+    
+    private func pauseUnpauseTracking() {
+        if !isPaused {
+              if let startTime = startTime {
+                  elapsedPausedTime += Date().timeIntervalSince(startTime)
+              }
+              isPaused = true
+              timer?.invalidate()
+          } else {
+              // If paused, resume the timer
+              let interval = intervalForUpdateOption(selectedUpdateOption)
+              startTime = Date().addingTimeInterval(-elapsedPausedTime)
+              isPaused = false
+              timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { _ in
+                  updateEarnings()
+              }
+          }
     }
     
     private func stopTracking() {
         timer?.invalidate()
         timer = nil
+        isPaused = false
     }
     
     private func intervalForUpdateOption(_ option: UpdateOption) -> TimeInterval {
         switch option {
+        case .every_second:
+            return oneSecond
         case .every_minute:
             return oneMinute
         case .every_five_minutes:
