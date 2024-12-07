@@ -94,6 +94,7 @@ struct MonevationAppApp: App {
         ForEach(UpdateOption.allCases, id: \.self) { option in
             Button(action: {
                 selectedUpdateOption = option
+                continueTimerWithNewOption()
             }) {
                 Label(option.rawValue, systemImage: selectedUpdateOption == option ? "checkmark" : "")
             }
@@ -155,6 +156,22 @@ struct MonevationAppApp: App {
         let elapsedTime = Date().timeIntervalSince(startTime)
         // Calculate total earned based on hourly rate and elapsed time (in hours)
         totalEarned = (elapsedTime / 3600.0) * hourlyRate
+    }
+    
+    private func continueTimerWithNewOption() {
+        timer?.invalidate()
+         
+         // Resume the timer with the new interval for the selected option
+         let interval = intervalForUpdateOption(selectedUpdateOption)
+         let currentTime = Date()
+         if let startTime = startTime {
+             let elapsedTime = currentTime.timeIntervalSince(startTime) + elapsedPausedTime
+             self.startTime = currentTime.addingTimeInterval(-elapsedTime)
+         }
+         
+         timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { _ in
+             updateEarnings()
+         }
     }
     
     func openSettings() {
