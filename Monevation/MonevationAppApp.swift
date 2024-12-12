@@ -96,7 +96,14 @@ struct MonevationAppApp: App {
                 selectedUpdateOption = option
                 continueTimerWithNewOption()
             }) {
-                Label(option.rawValue, systemImage: selectedUpdateOption == option ? "checkmark" : "")
+                HStack() {
+                    Text(option.rawValue)
+                    if selectedUpdateOption == option {
+                        Image(systemName: "checkmark.circle.fill")
+                            .foregroundColor(.green)
+                            .padding(.leading, 8)
+                    }
+                }
             }
         }
     }
