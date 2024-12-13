@@ -18,7 +18,8 @@ struct MonevationAppApp: App {
     @State private var hourlyRate: Double = 50.0
     @State private var isPaused: Bool = false
     @State private var elapsedPausedTime: TimeInterval = 0.0
-    
+    @State private var settingsWindow: NSWindow? // Add a reference to the settings window
+
     enum UpdateOption: String, CaseIterable {
         case every_second = "Update every second" // to simplify testing.
         case every_minute = "Update every minute"
@@ -58,9 +59,12 @@ struct MonevationAppApp: App {
             
             Divider()
             
-            // Settings menu
-            Menu("Settings") {
+            Menu("Set update interval") {
                 settingsMenuContent
+            }
+            
+            Button("Set hourly rate") {
+                openSettings()
             }
             
             Divider()
@@ -191,6 +195,8 @@ struct MonevationAppApp: App {
         settingsWindow.title = "Settings"
         settingsWindow.contentView = NSHostingView(rootView: SettingsView(hourlyRate: $hourlyRate))
         settingsWindow.makeKeyAndOrderFront(nil)
+        
+        self.settingsWindow = settingsWindow
     }
 }
 
@@ -199,16 +205,16 @@ struct SettingsView: View {
 
     var body: some View {
         VStack {
-            Text("Settings")
-                .font(.headline)
+            Text("Settings").font(.headline)
             HStack {
                 Text("Hourly Rate:")
-                TextField("Hourly Rate", value: $hourlyRate, formatter: NumberFormatter())
-                    .frame(width: 100)
+                TextField("Hourly Rate", value: $hourlyRate, formatter: NumberFormatter()).frame(width: 100)
             }
             .padding()
-            Button("Close") {
-                NSApp.keyWindow?.close()
+            Button("Save") {
+                if let settingsWindow = NSApp.keyWindow {
+                    settingsWindow.close()
+                }
             }
         }
         .padding()
