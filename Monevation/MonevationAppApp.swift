@@ -170,19 +170,28 @@ struct MonevationAppApp: App {
     }
     
     private func continueTimerWithNewOption() {
+        // Invalidate the old timer
         timer?.invalidate()
-         
-         // Resume the timer with the new interval for the selected option
-         let interval = intervalForUpdateOption(selectedUpdateOption)
-         let currentTime = Date()
-         if let startTime = startTime {
-             let elapsedTime = currentTime.timeIntervalSince(startTime) + elapsedPausedTime
-             self.startTime = currentTime.addingTimeInterval(-elapsedTime)
-         }
-         
-         timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { _ in
-             updateEarnings()
-         }
+
+        // Reset the totalEarned and start fresh for the new interval
+        totalEarned = 0.0
+        
+        // Set the new interval and recalculate the elapsed time
+        let interval = intervalForUpdateOption(selectedUpdateOption)
+        let currentTime = Date()
+        
+        // Adjust the start time based on the selected interval
+        if let startTime = startTime {
+            let elapsedTime = currentTime.timeIntervalSince(startTime) + elapsedPausedTime
+            self.startTime = currentTime.addingTimeInterval(-elapsedTime)
+        } else {
+            self.startTime = currentTime
+        }
+        
+        // Start a new timer with the new interval
+        timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { _ in
+            updateEarnings()
+        }
     }
     
     func openSettings() {
