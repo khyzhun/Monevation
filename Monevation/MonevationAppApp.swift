@@ -15,7 +15,7 @@ struct MonevationAppApp: App {
     @State private var timer: Timer?
     @State private var startTime: Date?
     @State private var totalEarned: Double = 0.0
-    @State private var hourlyRate: Double = 50.0
+    @State private var hourlyRate: Double = 36.0 // 1 cent for second (as a test).
     @State private var isPaused: Bool = false
     @State private var elapsedPausedTime: TimeInterval = 0.0
     @State private var settingsWindow: NSWindow? // Add a reference to the settings window
@@ -173,22 +173,34 @@ struct MonevationAppApp: App {
         // Invalidate the old timer
         timer?.invalidate()
 
-        // Reset the totalEarned and start fresh for the new interval
-        totalEarned = 0.0
-        
-        // Set the new interval and recalculate the elapsed time
-        let interval = intervalForUpdateOption(selectedUpdateOption)
+        // Save the previous total earned before switching intervals (in cents)
+        let previousTotalEarnedInCents = totalEarnedInCents
         let currentTime = Date()
         
-        // Adjust the start time based on the selected interval
+        // Convert the hourly rate to cents per second
+        let hourlyRateInCentsPerSecond = (hourlyRate * 100) / 3600.0 // convert hourly rate to cents per second
+        
+        // Get the new interval and set it
+        let interval = intervalForUpdateOption(selectedUpdateOption)
+        
+        // If there's an existing start time, calculate how much time has passed
         if let startTime = startTime {
-            let elapsedTime = currentTime.timeIntervalSince(startTime) + elapsedPausedTime
-            self.startTime = currentTime.addingTimeInterval(-elapsedTime)
+            let elapsedTimeInSeconds = currentTime.timeIntervalSince(startTime) + elapsedPausedTime
+            self.startTime = currentTime.addingTimeInterval(-elapsedTimeInSeconds)
+            
+            // Calculate the total earned in cents based on elapsed time (in seconds)
+            totalEarnedInCents = previousTotalEarnedInCents + Int(elapsedTimeInSeconds) * Int(hourlyRateInCentsPerSecond)
         } else {
             self.startTime = currentTime
         }
         
-        // Start a new timer with the new interval
+        // Update earnings if enough time has passed based on the new interval
+        let elapsedSinceStartInSeconds = currentTime.timeIntervalSince(startTime ?? currentTime) + elapsedPausedTime
+        if elapsedSinceStartInSeconds >= interval {
+            totalEarnedInCents = previousTotalEarnedInCents + Int(elapsedSinceStartInSeconds) * Int(hourlyRateInCentsPerSecond)
+        }
+        
+        // Start the timer with the new interval
         timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { _ in
             updateEarnings()
         }
